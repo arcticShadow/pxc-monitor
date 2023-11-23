@@ -3,7 +3,7 @@ import { cosmiconfig } from "cosmiconfig";
 const explorer = cosmiconfig("pxc");
 
 async function config() {
-  const result = await explorer.search();
+  const result = (await explorer.search()) ?? { config: {} };
 
   return result?.config;
 }
