@@ -20,9 +20,10 @@ jobs:
         with:
           node-version-file: ".nvmrc"
           # scope: arcticShadow
+          registry-url: http://npm.pkg.github.com/
       - run: |
-          ls -la ../ 
-          echo $$RUNNER_TEMP
+          ls -la ../../
+          echo $RUNNER_TEMP
           cat $RUNNER_TEMP/.npmrc
           pwd
           corepack enable
