@@ -23,7 +23,7 @@ jobs:
       - run: |
           pwd
           corepack enable
-          npm install @arcticshadow/eslint-config
+          npm install @arcticShadow/eslint-config
 
           pnpm install
           pnpm build
