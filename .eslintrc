@@ -1,0 +1,6 @@
+{
+    "extends": [
+        "@arcticShadow/eslint-config/node",
+        // "@arcticShadow/eslint-config/src/addons/prettier-align",
+    ]
+}
