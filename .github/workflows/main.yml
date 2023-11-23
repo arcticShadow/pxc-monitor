@@ -21,7 +21,9 @@ jobs:
           node-version-file: ".nvmrc"
           # scope: arcticShadow
           registry-url: http://npm.pkg.github.com/
-      - run: |
+      - env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           ls -la ../../
           echo $RUNNER_TEMP
           cat $RUNNER_TEMP/.npmrc
