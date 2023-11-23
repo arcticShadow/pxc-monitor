@@ -5,8 +5,9 @@ const getClient = async <T>() => {
   let { supabaseUrl, supabaseKey } = await config;
 
   if (!supabaseUrl || !supabaseKey) {
-    supabaseUrl = process.env.supabaseUrl;
-    supabaseKey = process.env.supabaseKey;
+    // get from github secrets - where it puts it in all caps
+    supabaseUrl = process.env.SUPABASEURL;
+    supabaseKey = process.env.SUPABASEKEY;
   }
   return createClient<T>(supabaseUrl, supabaseKey);
 };
