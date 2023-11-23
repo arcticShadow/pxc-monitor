@@ -21,6 +21,7 @@ jobs:
           node-version-file: ".nvmrc"
           # scope: arcticShadow
       - run: |
+          cat ~/.npmrc
           pwd
           corepack enable
           npm install @arcticshadow/eslint-config
