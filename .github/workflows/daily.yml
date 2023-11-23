@@ -12,6 +12,9 @@ jobs:
     env:
       supabaseKey: ${{ secrets.supabaseKey }}
       supabaseUrl: ${{ secrets.supabaseUrl }}
+    defaults:
+      run:
+        working-directory: crawler
     steps:
       - uses: actions/checkout@v2
         with:
