@@ -19,17 +19,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-
           registry-url: http://npm.pkg.github.com/
       - env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # ls -la ../../
-          # echo $RUNNER_TEMP
-          # cat $RUNNER_TEMP/.npmrc
-          # pwd
           corepack enable
-          # npm install @arcticshadow/eslint-config
-
           pnpm install
           pnpm build
