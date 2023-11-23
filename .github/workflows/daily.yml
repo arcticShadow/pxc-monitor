@@ -28,3 +28,5 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm build
           node dist/src/crawl.js
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
