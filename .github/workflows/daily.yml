@@ -10,8 +10,8 @@ jobs:
   monitor-tools:
     runs-on: ubuntu-latest
     env:
-      supabaseKey: ${{ secrets.supabaseKey }}
-      supabaseUrl: ${{ secrets.supabaseUrl }}
+      supabaseKey: ${{ secrets.SUPABASEKEY }}
+      supabaseUrl: ${{ secrets.SUPABASEURL }}
     defaults:
       run:
         working-directory: ./crawler
