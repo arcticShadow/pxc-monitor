@@ -43,17 +43,20 @@ const go = async function () {
               price: Number.parseFloat(price.replace("$", "")),
             });
           })
-          .then(resolve)
+          .then((results) => {
+            console.log(results);
+            resolve(results);
+          })
           .catch((err) => {
             console.log("promise chain err", err);
-            reject(err);
+          })
+          .finally(async () => {
+            // finish crawl
+            await crawler.done();
           });
       });
     }),
   );
-  console.log(results);
-  // finish crawl
-  await crawler.done();
 
   // store price
 };
