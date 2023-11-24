@@ -23,7 +23,9 @@ import { chromium } from "playwright";
 
 const getCrawler = async () => {
   const browser = await chromium.launch();
-  const context = await browser.newContext();
+  const context = await browser.newContext({
+    recordVideo: { dir: "crawl-results/videos/" },
+  });
 
   const crawl = async (url: string) => {
     const page = await context.newPage();

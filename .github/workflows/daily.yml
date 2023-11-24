@@ -30,6 +30,15 @@ jobs:
           corepack enable
           pnpm install --frozen-lockfile
           pnpm build
-          node dist/src/crawl.js
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: |
+          node dist/src/crawl.js
+
+      - name: Archive playright output
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: |
+            crawler/crawl-results
