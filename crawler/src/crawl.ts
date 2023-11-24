@@ -17,9 +17,9 @@ const go = async function () {
   }
 
   // iterate products
-  const results = await Promise.all(
+  await Promise.all(
     products.map((product) => {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         // crawl product
         crawler
           .crawl(product.url)
@@ -57,8 +57,6 @@ const go = async function () {
       });
     }),
   );
-
-  // store price
 };
 
 try {
