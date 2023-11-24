@@ -77,7 +77,7 @@ const checkAndBypassCapture = async (page: Page) => {
 const getCrawler = async () => {
   const browser = await chromium.launch();
   const context = await browser.newContext({
-    ...devices['Pixel 7 landscape']
+    ...devices["Pixel 7 landscape"],
     recordVideo: { dir: "crawl-results/videos/" },
   });
 
