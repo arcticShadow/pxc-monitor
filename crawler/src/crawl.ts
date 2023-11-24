@@ -19,7 +19,7 @@ const go = async function () {
   // iterate products
   const results = await Promise.all(
     products.map((product) => {
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         // crawl product
         crawler
           .crawl(product.url)
@@ -46,6 +46,7 @@ const go = async function () {
           .then(resolve)
           .catch((err) => {
             console.log("promise chain err", err);
+            reject(err);
           });
       });
     }),
