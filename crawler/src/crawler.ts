@@ -29,10 +29,10 @@ const wait = async (time: number) => {
   return new Promise((resolve) => setTimeout(resolve, time));
 };
 
-function randomNumberFromRange(min: number, max: number) {
+const randomNumberFromRange = (min: number, max: number) => {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
+};
 
 const checkAndBypassCapture = async (page: Page) => {
   const isCapturePage = await page
@@ -45,9 +45,8 @@ const checkAndBypassCapture = async (page: Page) => {
     await wait(randomTime());
 
     // Scroll the page to load additional content
-    await page.evaluate(() =>
-      window.scrollBy(0, randomNumberFromRange(10, window.innerHeight / 2)),
-    );
+    let scrollAmount = randomNumberFromRange(10, window.innerHeight / 2);
+    await page.evaluate(() => window.scrollBy(0, scrollAmount));
 
     await wait(randomTime());
 
@@ -57,9 +56,8 @@ const checkAndBypassCapture = async (page: Page) => {
       { steps: 30 },
     );
 
-    await page.evaluate(() =>
-      window.scrollBy(randomNumberFromRange(10, window.innerWidth / 2), 0),
-    );
+    scrollAmount = randomNumberFromRange(10, window.innerHeight / 2);
+    await page.evaluate(() => window.scrollBy(scrollAmount, 0));
 
     await page.mouse.move(
       randomNumberFromRange(10, window.innerWidth / 2),
@@ -71,6 +69,8 @@ const checkAndBypassCapture = async (page: Page) => {
     await new Promise((resolve) =>
       setTimeout(resolve, Math.floor(Math.random() * 4000 + 1000)),
     );
+
+    await page.locator("Verify you are human").click();
   }
 };
 
