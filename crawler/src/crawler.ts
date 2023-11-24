@@ -27,7 +27,11 @@ const getCrawler = async () => {
 
   const crawl = async (url: string) => {
     const page = await context.newPage();
-    page.goto(url);
+    try {
+      await page.goto(url);
+    } catch (err) {
+      console.log(err);
+    }
     return page;
   };
 

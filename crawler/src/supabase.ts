@@ -3,7 +3,6 @@ import config from "./config";
 
 const getClient = async <T>() => {
   let { supabaseUrl, supabaseKey } = await config;
-  console.log({ supabaseKey, supabaseUrl, env: process.env });
 
   if (!supabaseUrl || !supabaseKey) {
     // get from github secrets - where it puts it in all caps
