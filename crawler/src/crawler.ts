@@ -22,7 +22,9 @@ const checkAndBypassCapture = async (page: Page) => {
 
     await wait(randomTime());
 
-    // Scroll the page to load additional content
+    const windowSize = await page.evaluate(() => {
+      return { x: window.innerWidth, y: window.innerHeight };
+    });
 
     await page.evaluate(() => {
       const randomNumberFromRange = (min: number, max: number) => {
@@ -34,8 +36,8 @@ const checkAndBypassCapture = async (page: Page) => {
     await wait(randomTime());
 
     await page.mouse.move(
-      randomNumberFromRange(10, window.innerWidth / 2),
-      randomNumberFromRange(10, window.innerHeight / 2),
+      randomNumberFromRange(10, windowSize.x / 2),
+      randomNumberFromRange(10, windowSize.y / 2),
       { steps: 30 },
     );
 
@@ -47,8 +49,8 @@ const checkAndBypassCapture = async (page: Page) => {
     });
 
     await page.mouse.move(
-      randomNumberFromRange(10, window.innerWidth / 2),
-      randomNumberFromRange(10, window.innerHeight / 2),
+      randomNumberFromRange(10, windowSize.x / 2),
+      randomNumberFromRange(10, windowSize.y / 2),
       { steps: 30 },
     );
 
@@ -60,8 +62,8 @@ const checkAndBypassCapture = async (page: Page) => {
     await page.locator("Verify you are human").click();
 
     await page.mouse.move(
-      randomNumberFromRange(10, window.innerWidth / 2),
-      randomNumberFromRange(10, window.innerHeight / 2),
+      randomNumberFromRange(10, windowSize.x / 2),
+      randomNumberFromRange(10, windowSize.y / 2),
       { steps: 30 },
     );
   }
