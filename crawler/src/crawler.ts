@@ -1,26 +1,5 @@
 import { Page, chromium, devices } from "playwright";
 
-// const getHarness = async () => {
-//   const browser = await chromium.launch();
-//   const context = await browser.newContext();
-//   const page = await context.newPage();
-//   // Navigate to a website
-//   await page.goto(
-//     "https://www.bunnings.co.nz/ozito-pxc-18v-2-x-4-0ah-batteries-and-charger-pack-pxbc-800c_p0375443"
-//   );
-//   // const price = await page.$$('[data-locator=product-price-conversion-container] [data-locator=product-price]');
-//   const price = await page
-//     .locator(
-//       "[data-locator=product-price-conversion-container] [data-locator=product-price]"
-//     )
-//     .first()
-//     .textContent();
-//   console.log(price);
-
-//   await browser.close();
-//   return;
-// };
-
 const randomTime = () => {
   return Math.floor(Math.random() * 4000 + 1000);
 };
@@ -30,7 +9,6 @@ const wait = async (time: number) => {
 };
 
 const randomNumberFromRange = (min: number, max: number) => {
-  // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
@@ -45,8 +23,13 @@ const checkAndBypassCapture = async (page: Page) => {
     await wait(randomTime());
 
     // Scroll the page to load additional content
-    let scrollAmount = randomNumberFromRange(10, window.innerHeight / 2);
-    await page.evaluate(() => window.scrollBy(0, scrollAmount));
+
+    await page.evaluate(() => {
+      const randomNumberFromRange = (min: number, max: number) => {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      };
+      window.scrollBy(0, randomNumberFromRange(10, window.innerHeight / 2));
+    });
 
     await wait(randomTime());
 
@@ -56,8 +39,12 @@ const checkAndBypassCapture = async (page: Page) => {
       { steps: 30 },
     );
 
-    scrollAmount = randomNumberFromRange(10, window.innerHeight / 2);
-    await page.evaluate(() => window.scrollBy(scrollAmount, 0));
+    await page.evaluate(() => {
+      const randomNumberFromRange = (min: number, max: number) => {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      };
+      window.scrollBy(randomNumberFromRange(10, window.innerWidth / 2), 0);
+    });
 
     await page.mouse.move(
       randomNumberFromRange(10, window.innerWidth / 2),
@@ -71,6 +58,12 @@ const checkAndBypassCapture = async (page: Page) => {
     );
 
     await page.locator("Verify you are human").click();
+
+    await page.mouse.move(
+      randomNumberFromRange(10, window.innerWidth / 2),
+      randomNumberFromRange(10, window.innerHeight / 2),
+      { steps: 30 },
+    );
   }
 };
 
