@@ -20,6 +20,7 @@ const checkAndBypassCapture = async (page: Page) => {
   if (isCapturePage) {
     console.log("attempting to bypass captcha");
 
+    console.log(await page.content());
     await wait(randomTime());
 
     const windowSize = await page.evaluate(() => {
